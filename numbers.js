@@ -115,7 +115,7 @@ function numbers(client, windowSize, onResult) {
       // Create a list of all the column indices relevant to each band
       // (there'll be one per sensor)
       const bands = {};
-      allBands.forEach(band => bands[band] = [])
+      subs.pow.cols.forEach(band => bands[band] = [])
 
       for (let i = 0; i < subs.pow.cols.length; i++) {
         // pow columns look like: IED_AF3/alpha
