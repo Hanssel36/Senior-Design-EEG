@@ -42,7 +42,7 @@ def get_fitbit_hr_data(CLIENT_ID, CLIENT_SECRET, start_time=None, end_time=None)
     ACCESS_TOKEN, REFRESH_TOKEN = get_oauth2_tokens(CLIENT_ID, CLIENT_SECRET)
     auth2_client = fitbit.Fitbit(CLIENT_ID, CLIENT_SECRET, oauth2=True, access_token=ACCESS_TOKEN, refresh_token=REFRESH_TOKEN)
 
-    yesterday = str((datetime.datetime.now() - datetime.timedelta(days=1)).strftime("%Y-%m-%d"))
+    #yesterday = str((datetime.datetime.now() - datetime.timedelta(days=1)).strftime("%Y-%m-%d"))
 
     fit_statsHR = auth2_client.intraday_time_series('activities/heart', detail_level='1sec', start_time=None, end_time=None)
     fit_statsHR_df = pd.DataFrame(np.array([ [hr_reading['time'], hr_reading['value']]
@@ -51,8 +51,8 @@ def get_fitbit_hr_data(CLIENT_ID, CLIENT_SECRET, start_time=None, end_time=None)
     return fit_statsHR_df
 
 if __name__ == '__main__':
-    CLIENT_ID = '22DJCT'
-    CLIENT_SECRET = '4a394f17a9a7806c7da7eaeff4e0b6b9'
+    CLIENT_ID = '22DQB4'
+    CLIENT_SECRET = '6904ab6667850a0a249ff2f048b73dd1'
 
     fitbit_hr_data = get_fitbit_hr_data(CLIENT_ID, CLIENT_SECRET, args.start_time, args.end_time)
     fitbit_hr_data.to_csv(args.filename, index=False)
