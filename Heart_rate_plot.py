@@ -19,7 +19,10 @@ x = np.array(HR_data.time)
 fig, ax = plt.subplots()
 line, = ax.plot(x, labels, "ro")
 mplcursors.cursor(ax, hover = True).connect(
-    "add", lambda sel: sel.annotation.set_text(labels[sel.target.index]))
+    "add", lambda sel: sel.annotation.set_text(labels[sel.target.index])) # this adds the Heart rate for the scrolling window 
+mplcursors.cursor(ax, hover = True).connect(
+    "add", lambda sel: sel.annotation.set_text(x[sel.target.index])) # this adds the time for the scrolling window
+# this can probably be improved to look nicer
 plt.plot(HR_data.time,HR_data.heartrate)
 plt.title('HRData_Subway')
 plt.xlabel('Time')
